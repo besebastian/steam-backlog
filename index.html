@@ -4,8 +4,20 @@
     <meta charset="utf-8" />
     <title>Steam Tings</title>
     <link href="./less/style.less" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js "></script>
 </head>
 <body>
     
+    <script>
+    yepnope([{
+        load: 'http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js',
+    }, {
+        load: './js/script.js',
+        complete: function() {
+            window.init();
+        }
+    }]);
+
+    </script>
 </body>
 </html>
