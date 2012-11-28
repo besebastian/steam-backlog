@@ -1,2 +1,0 @@
-init = () ->
-  console.log "init"
