@@ -3,23 +3,36 @@
 <head>
     <meta charset="utf-8" />
     <title>Steam Tings</title>
-    <link href="./less/style.less" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link href='http://fonts.googleapis.com/css?family=Rambla' rel='stylesheet' type='text/css'>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js "></script>
 </head>
 <body>
 
+    <div class="jumbotron masthead">
+        <div class="container">
+            <h1>Steam Backlog Organiser</h1>
+            <div class="row">
+                <form id="steamId" class="form-horizontal span6 offset3">
+                    <input id="username" type="text" class="span4" placeholder="username" />
+                    <input type="submit" value="Get User" class="span2 btn-primary btn" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container for-content">
+
+    </div>
+
+
     <script>
-    yepnope([{
-        load: 'http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js',
-    }, {
-        load: './js/script.js',
-        complete: function() {
-            window.init();
-        }
-    }]);
-
-    <!-- http://www.disavian.net/steam-yql-open-table/ -->
-
+    yepnope([
+        { load: 'http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js' },
+        { load: './js/bootstrap.min.js' },
+        { load: './js/script.js', complete: function() { window.init(); } }
+    ]);
     </script>
 </body>
 </html>

@@ -1,0 +1,14 @@
+h1 {
+	font-size: 72px;
+	line-height: 1;
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+.masthead {
+	padding: 50px 0;
+}
+
+img.pull-left {
+	margin-right: 15px;
+}
