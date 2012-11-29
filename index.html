@@ -2,7 +2,7 @@
 <html lang="en-GB">
 <head>
     <meta charset="utf-8" />
-    <title>Steam Tings</title>
+    <title>Steam Backlog Organiser</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <link href='http://fonts.googleapis.com/css?family=Rambla' rel='stylesheet' type='text/css'>
@@ -14,11 +14,14 @@
         <div class="container">
             <h1>Steam Backlog Organiser</h1>
             <div class="row">
-                <form id="steamId" class="form-horizontal span6 offset3">
-                    <input id="username" type="text" class="span4" placeholder="username" />
-                    <input type="submit" value="Get User" class="span2 btn-primary btn" />
+                <form id="steamId" class="form-horizontal span6 offset3 clearfix">
+                    <div class="input-append">
+                        <input class="span5" id="username" type="text" placeholder="Enter username">
+                        <button class="btn" type="span1 button"><i class="icon-search"></i> Find user</button>
+                    </div>
                 </form>
             </div>
+            <div class="error-container"></div>
         </div>
     </div>
 

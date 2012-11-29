@@ -14,7 +14,11 @@
             dataType: 'jsonp',
             success: function(data) {
                 user = data.query.results.profile;
-                getGames(username);
+                if (user) {
+                    getGames(username);
+                } else {
+                    error("Failed to retrieve user information for \"" + username + "\". Did you enter the correct username?<br/><br/>Your username is part of your profile URL. e.g.:<br/>http://steamcommunity.com/id/<strong>username</strong>");
+                }
             }
         });
     };
@@ -64,10 +68,18 @@
         $(".for-content").fadeIn(400);
     };
 
+    error = function(str) {
+        $(".error-container").prepend("<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>×</button><h4>Error</h4><p class='error-text'>" + str + "</p></div>");
+    };
+
     window.init = function() {
         $("#steamId").on("submit", function(e) {
             e.preventDefault();
-            lookupUser(escape($("#username").val()));
+            if ($("#username").val()) {
+                lookupUser(escape($("#username").val()));
+            } else {
+                error("You must enter a username.Your username is part of your profile URL. e.g.:<br/>http://steamcommunity.com/id/<strong>username</strong>");
+            }
         });
     };
 
