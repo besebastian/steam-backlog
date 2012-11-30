@@ -25,15 +25,17 @@
         </div>
     </div>
 
-    <div class="container for-content">
+    <div class="container for-content"></div>
 
-    </div>
+    <div class="loading"><img src="./img/ajax-loader.gif" /></div>
 
 
     <script>
     yepnope([
         { load: 'http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js' },
         { load: './js/bootstrap.min.js' },
+        { load: '//www.google.com/jsapi' }
+        { load: 'preload!//www.google.com/uds/api/visualization/1.0/6ceef8f4137a389d7745e173bfc981e5/format+en_GB,default,piechart.I.js' }
         { load: './js/script.js', complete: function() { window.init(); } }
     ]);
     </script>

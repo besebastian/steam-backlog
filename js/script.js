@@ -13,8 +13,8 @@
             url: jUrl,
             dataType: 'jsonp',
             success: function(data) {
-                user = data.query.results.profile;
-                if (user) {
+                if (data.query.results) {
+                    user = data.query.results.profile;
                     getGames(username);
                 } else {
                     error("Failed to retrieve user information for \"" + username + "\". Did you enter the correct username?<br/><br/>Your username is part of your profile URL. e.g.:<br/>http://steamcommunity.com/id/<strong>username</strong>");
@@ -31,6 +31,7 @@
             success: function(data) {
                 games = data.value.items[0].games.game;
                 displayGames(games);
+                updateUrl(username);
             }
         });
     };
@@ -62,20 +63,48 @@
 
         $(gameList).each(function(i,v) {
             if (this.hoursOnRecord === undefined) {
+                hideLoading();
                 container.find(".game-list").append("<li>" + this.name + "</li>");
             }
         });
         $(".for-content").fadeIn(400);
     };
 
+    updateUrl = function(username) {
+        // window.location.href = window.location.origin + window.location.pathname + "?username=" + username;
+    };
+
+    showLoading = function() { $(".loading").fadeIn(500); };
+    hideLoading = function() { $(".loading").fadeOut(500); };
+
     error = function(str) {
+        hideLoading();
         $(".error-container").prepend("<div class='alert alert-error'><button type='button' class='close' data-dismiss='alert'>×</button><h4>Error</h4><p class='error-text'>" + str + "</p></div>");
+    };
+
+    window.graph = function() {
+
+    };
+
+    drawChart = function(data) {
+        var chart, options;
+        options = {
+            backgroundColor: 'transparent',
+            titlePosition: 'none',
+            chartArea: {
+                width: "75%",
+                height: "80%"
+            }
+        };
+        chart = new google.visualization.BarChart(document.getElementById("play_tools_chart"));
+        chart.draw(data, options);
     };
 
     window.init = function() {
         $("#steamId").on("submit", function(e) {
             e.preventDefault();
             if ($("#username").val()) {
+                showLoading();
                 lookupUser(escape($("#username").val()));
             } else {
                 error("You must enter a username.Your username is part of your profile URL. e.g.:<br/>http://steamcommunity.com/id/<strong>username</strong>");
