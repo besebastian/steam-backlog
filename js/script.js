@@ -48,7 +48,7 @@
 
     checkContainer = function() {
         $(".for-content").fadeOut(0);
-        $(".for-content").html('<div class="row content"><header><h2></h2><p class="small"></p></header><div class="well"><ul class="game-list"></ul></div></div>');
+        $(".for-content").html('<div class="row content"><header><h2></h2><p class="small"></p></header><div class="well recommendation"></div><div class="well"><h2>Unplayed Games</h2><ul class="game-list"></ul></div></div>');
         return $(".content");
     };
 
@@ -56,18 +56,31 @@
         var unplayed = countUnplayed(gameList);
         var percentage = Math.ceil(unplayed / gameList.length * 100);
         var container = checkContainer();
+        var randomGame = getRandomGame(gameList);
+
 
         container.find("header").prepend("<img src='" + user.avatarIcon + "' alt='Profile image for " + user.steamID + "' class='pull-left' />");
         container.find("header").children("h2").html("Results for <a href='http://steamcommunity.com/id/" + user.customURL + "' target='_blank'>" + user.steamID + "</a> (" + user.customURL + ")");
         container.find("header").children("p").html(gameList.length + " game(s) found, out of which " + unplayed + " (" + percentage + "%) are unplayed.");
-
+        container.find(".recommendation").html("<h2>Maybe you should play <a href='" + randomGame.storeLink + "'>" + randomGame.name + "</a>?</h2>");
         $(gameList).each(function(i,v) {
             if (this.hoursOnRecord === undefined) {
                 hideLoading();
-                container.find(".game-list").append("<li>" + this.name + "</li>");
+                container.find(".game-list").append("<li><a href='" + this.storeLink + "'><img src='" + this.logo + "' alt='" + this.name + "'/></a></li>");
             }
         });
         $(".for-content").fadeIn(400);
+        $(".for-recommendation").fadeIn(400);
+    };
+
+    getRandomGame = function(gameList) {
+        var unplayed = [];
+        $(gameList).each(function(i,v) {
+            if (this.hoursOnRecord === undefined) {
+                unplayed.push(this);
+            }
+        });
+        return unplayed[Math.floor(Math.random() * unplayed.length)];
     };
 
     updateUrl = function(username) {

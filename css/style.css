@@ -34,3 +34,19 @@ img.pull-left {
         left: 50%;
         top: 50%;
     }
+
+.for-recommendation {
+    display: none;
+}
+
+.container.muted {
+    text-align: center;
+}
+
+.game-list {
+    -webkit-columns: 5;
+    -moz-columns: 5;
+    -o-columns: 5;
+    columns: 5;
+    list-style: none;
+}
